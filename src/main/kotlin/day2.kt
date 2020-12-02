@@ -1,37 +1,31 @@
 import kotlin.math.min
+import kotlin.system.measureTimeMillis
 
 
 fun day2(){
-    val inputList = readFileAsLinesUsingBufferedReader("src/main/resources/day2input").map { it.split(" ") }
-    val minMaxList = inputList.map { it[0].split("-") }
-    val codeList = inputList.map { it[1].first()}
-    val passwordList = inputList.map { it[2]}
 
-    val passwordPolicyList : MutableList<PasswordPolicy> = mutableListOf()
+    val inputList = readFileAsLinesUsingBufferedReader("src/main/resources/day2input").map { it.split("-"," ",": ") }
 
-    minMaxList.forEachIndexed{index, element ->
-        passwordPolicyList.add(PasswordPolicy(element[0].toInt(), element[1].toInt(),codeList[index]))
-    }
+    val passwordPolicyList = inputList.map{ PasswordPolicy(it[0].toInt(),it[1].toInt(),it[2].single()) }
+    val passwordList = inputList.map { it[3] }
 
     var counter  = 0
-    passwordPolicyList.forEachIndexed{index, element ->
-        if(element.isValid(passwordList[index])){
+    passwordPolicyList.forEachIndexed{index, passwordPolicy ->
+        if(passwordPolicy.isValid(passwordList[index])){
             counter++
         }
     }
 
     var officialCounter = 0
-    passwordPolicyList.forEachIndexed{index, element ->
-        if(element.isOfficialTobagganPolicyValid(passwordList[index])){
+    passwordPolicyList.forEachIndexed{index, passwordPolicy ->
+        if(passwordPolicy.isOfficialTobagganPolicyValid(passwordList[index])){
             officialCounter++
         }
     }
 
-
     println(counter)
     println(officialCounter)
 }
-
 
 class PasswordPolicy(val minimumCount: Int, val maximumCount: Int, val character: Char) {
 

@@ -12,7 +12,7 @@ fun validatePassportCountPart1(passportData : List<Map<String,String>>): Int{
     return passportData.count { map -> validKeys.all { it in map } }
 }
 
-//used the net to learn more about the usage of let/run
+//used the net to learn more about the usage of let/run/all
 fun validatePassportCountPart2(passportData : List<Map<String,String>>): Int{
     val validKeys = listOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
     return passportData.count { map -> validKeys.all {
@@ -32,7 +32,6 @@ fun validatePassportCountPart2(passportData : List<Map<String,String>>): Int{
                 } ==true
         }
     }
-
 }
 
 fun parsePassportData (passportData : List<String>) : List<Map<String,String>>{

@@ -1,6 +1,7 @@
 fun day1(){
     val inputList = readFileAsLinesUsingBufferedReader("src/main/resources/day1input")
     val inputListAsInt = inputList.map{it.toInt()}
+
     val matchingPair = findTwoEntriesThatSumToValue(inputListAsInt,2020)
     println(matchingPair.first.times(matchingPair.second))
 
@@ -13,6 +14,7 @@ fun findTwoEntriesThatSumToValue (listOfEntries : List<Int>, sumValue : Int) : P
     val sortedAscending = listOfEntries.sorted()
     var leftHandSide = 0
     var rightHandSide = sortedAscending.lastIndex
+    // change names of the lefthand side etc. So change to lower and higher number.
 
     while (leftHandSide < rightHandSide) {
         var sum = sortedAscending[leftHandSide] + sortedAscending[rightHandSide]

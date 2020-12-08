@@ -5,7 +5,7 @@ fun day7()  {
     val bagData = readFileAsLinesUsingBufferedReader("src/main/resources/day7input")
     //calculateBagOptions(bagData)
     val bagList = parseBagData(bagData)
-    //println(getParentBags(bagList,"shiny gold").count())
+    println(getParentBags(bagList,"shiny gold").count())
     println(countBagsInBag(bagList,"shiny gold"))
 
 }

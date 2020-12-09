@@ -12,15 +12,14 @@ fun day1(){
 fun findTwoEntriesThatSumToValue (listOfEntries : List<Int>, sumValue : Int) : Pair<Int,Int> {
     // using the sorting and walking inward algorithm
     val sortedAscending = listOfEntries.sorted()
-    var leftHandSide = 0
-    var rightHandSide = sortedAscending.lastIndex
-    // change names of the lefthand side etc. So change to lower and higher number.
+    var lowestNumber = 0
+    var highestNumber = sortedAscending.lastIndex
 
-    while (leftHandSide < rightHandSide) {
-        var sum = sortedAscending[leftHandSide] + sortedAscending[rightHandSide]
-        if (sum == sumValue) return Pair(sortedAscending[leftHandSide], sortedAscending[rightHandSide])
-        else if (sum <  sumValue) leftHandSide++
-        else rightHandSide--
+    while (lowestNumber < highestNumber) {
+        var sum = sortedAscending[lowestNumber] + sortedAscending[highestNumber]
+        if (sum == sumValue) return Pair(sortedAscending[lowestNumber], sortedAscending[highestNumber])
+        else if (sum <  sumValue) lowestNumber++
+        else highestNumber--
     }
 
     //No match

@@ -3,7 +3,7 @@ import kotlin.system.measureTimeMillis
 
 
 fun main(){
-    day8()
+    day9()
 }
 
 

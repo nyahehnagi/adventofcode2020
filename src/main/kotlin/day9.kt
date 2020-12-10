@@ -20,7 +20,7 @@ fun findSumOfLowestAndHighestNumbersInContagiousRange (numberFeed : List<Long>,p
         {
             val sub = numberFeed.subList(indexAsc, numberFeed.lastIndex - indexDesc)
             if (sub.sum() == invalidNumber) {
-                return sub.sorted()[0] + sub.sorted().last()
+                return sub.sorted()[0] + sub.max()!!
             }
             indexDesc ++
         }
@@ -28,29 +28,6 @@ fun findSumOfLowestAndHighestNumbersInContagiousRange (numberFeed : List<Long>,p
 
     return 0L
 }
-
-/*
-35
-20
-15
-25
-47
-40
-62
-55
-65
-95
-102
-117
-150
-182
-127
-219
-299
-277
-309
-576
-*/
 
 fun List<Long>.findRangeThatSumsTo(number: Long): List<Long> {
     for (i in indices) for (j in indices.reversed()) {

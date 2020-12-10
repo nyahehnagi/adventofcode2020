@@ -26,8 +26,7 @@ fun part2 (adapters : List<Int>) : Long {
     val sortedAdapters = adapters.sorted()
     val myAdapter = sortedAdapters.last()
 
-    // full chain of data including seat socket and my adapter
-
+    // do not actually need starting and my adapter!
     return generateValidArrangement(sortedAdapters, 0, myAdapter)
 
 

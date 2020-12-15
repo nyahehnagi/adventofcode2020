@@ -31,9 +31,7 @@ fun part2 (adapters : List<Int>) : Long {
 
 
 }
-object GlobalVariable {
-    var memo = mutableMapOf<Int,Long>()
-}
+
 
 fun generateValidArrangement(adapters: List<Int>, currentAdapter : Int, maxAdapter : Int) :  Long {
 

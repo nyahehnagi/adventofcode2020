@@ -1,4 +1,3 @@
-import GlobalVariable.tracker
 
 
 fun day15()  {
@@ -21,22 +20,18 @@ fun day15()  {
 fun part1 (numbers : MutableMap<Int, Int>, countTo : Int) : Int? {
 
     val startingValue = numbers.size + 1
-    //initialise tracker
-    initTracker(numbers)
+    var tracker = mutableMapOf<Int,Pair<Int,Int>>()
+    numbers.forEach{tracker[it.value] = Pair(it.key,it.key)}
 
     for (turn in startingValue..countTo) {
-        numbers[turn] = determineNextValue (numbers)
+        numbers[turn] = determineNextValue (numbers, tracker)
     }
 
     return numbers[countTo]
 }
 
-fun initTracker(numbers : MutableMap<Int, Int>){
-    tracker.clear()
-    numbers.forEach{tracker[it.value] = Pair(it.key,it.key)}
-}
 
-fun seenBefore(number: Int, indexOfLast : Int) : Int{
+fun seenBefore(number: Int, indexOfLast : Int, tracker : MutableMap<Int, Pair<Int, Int>>) : Int{
      if (tracker.containsKey(number)){
          tracker[number] = tracker[number]?.let { Pair(it.second,indexOfLast) }!!
          return tracker[number]!!.second - tracker[number]!!.first
@@ -47,11 +42,11 @@ fun seenBefore(number: Int, indexOfLast : Int) : Int{
     return tracker[number]!!.second - tracker[number]!!.first
 }
 
-fun determineNextValue(numberList : MutableMap<Int, Int>) : Int {
+fun determineNextValue(numberList : MutableMap<Int, Int>, tracker : MutableMap<Int, Pair<Int, Int>>) : Int {
     val lastNumberSpoken = numberList[numberList.size]
     val indexOfLastNumber = numberList.size
 
-    return lastNumberSpoken?.let { seenBefore(it, indexOfLastNumber) }!!
+    return lastNumberSpoken?.let { seenBefore(it, indexOfLastNumber, tracker) }!!
 
 }
 
